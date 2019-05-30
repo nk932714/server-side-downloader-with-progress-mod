@@ -1,4 +1,19 @@
 <?php 
+/******** if downloading file does not exist so create one ***************/
+$file00 = "downloadings.txt";
+if(!is_file($file00)){
+    file_put_contents($file00, '');
+}
+
+$file_name  =  $_POST["down_name"];
+$input_data_for_downloadings = '<li>'.$file_name.'</li>';
+$old = file_get_contents("downloadings.txt");
+
+if (strpos($old, $file_name) == false) { 
+$full_list = $old.$input_data_for_downloadings;
+file_put_contents( "downloadings.txt", $full_list );
+
+/*************** above to avoid duplicate request again and again *********************************/
 //require_once('downloader.php');
 //if (!isset($_POST['submit'])) { die("something went wrong"); }
 $down_link  = $_POST["down_link"];
@@ -44,4 +59,8 @@ function progressCallback ($resource, $download_size, $downloaded_size, $upload_
 
 echo '<a href="'.$file_name_progress.'">Click to get progress</a>';
 
+}
+
+else echo "This file is already downloading or in the queue.";
+    
 ?>
