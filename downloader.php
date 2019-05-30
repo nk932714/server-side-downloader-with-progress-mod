@@ -12,7 +12,12 @@ $old = file_get_contents("downloadings.txt");
 if (strpos($old, $file_name) == false) { 
 $full_list = $old.$input_data_for_downloadings;
 file_put_contents( "downloadings.txt", $full_list );
+    }
 
+else {
+    echo "This file is already downloading or in the queue.";
+    die("exit...");
+}
 /*************** above to avoid duplicate request again and again *********************************/
 //require_once('downloader.php');
 //if (!isset($_POST['submit'])) { die("something went wrong"); }
@@ -21,7 +26,6 @@ $down_ip    = $_POST["down_ip"];
 $file_name  =  $_POST["down_name"];
 $file_name_progress = $file_name.'.txt';
 echo $file_name_progress;
-
 file_put_contents( $file_name_progress, '' );
 if(is_file($file_name_progress)){ unlink($file_name_progress); }
 if(is_file($file_name)){ unlink($file_name); }
@@ -59,8 +63,5 @@ function progressCallback ($resource, $download_size, $downloaded_size, $upload_
 
 echo '<a href="'.$file_name_progress.'">Click to get progress</a>';
 
-}
-
-else echo "This file is already downloading or in the queue.";
     
 ?>
