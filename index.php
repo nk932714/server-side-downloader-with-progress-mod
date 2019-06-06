@@ -7,7 +7,7 @@ if(!is_file($file00)){
 /**************** ************/
  /************ delete coding start *******/
     if (isset($_GET['delete'])) { 
-     $file = 'rec/'.$_GET["delete"];
+     $file = $_GET["delete"];
              if (!unlink($file)){       echo ("(Error deleting file<b><i>".$_GET["delete"]."</i></b>. <br> This file is already deleted)<br>");    }
                         else    {         echo ("Deleted $file".$_GET["delete"]."<br>");         }
                  } 
