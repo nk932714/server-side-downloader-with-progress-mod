@@ -5,6 +5,15 @@ if(!is_file($file00)){
     file_put_contents($file00, '');
 }
 /**************** ************/
+ /************ delete coding start *******/
+    if (isset($_GET['delete'])) { 
+     $file = 'rec/'.$_GET["delete"];
+             if (!unlink($file)){       echo ("(Error deleting file<b><i>".$_GET["delete"]."</i></b>. <br> This file is already deleted)<br>");    }
+                        else    {         echo ("Deleted $file".$_GET["delete"]."<br>");         }
+                 } 
+                 else {  } 
+/* delete coding end */
+
 $path    = '.';
 $files = scandir($path);
 $files = array_diff(scandir($path), array('.', '..'));
@@ -12,7 +21,7 @@ $files = array_diff(scandir($path), array('.', '..'));
 echo "<ol>"; //order list
 foreach ($files as $filename) {
     $result = $filename;
-    echo "<li><a href=$result>$result</a> File size = ".formatSizeUnits(filesize($result))."</li>";
+    echo "<li><a href=$result>$result</a> File size = ".formatSizeUnits(filesize($result))."&emsp;&emsp;<a href=index.php?delete=$result>Click to delete</a></li>";
 }
 
 
