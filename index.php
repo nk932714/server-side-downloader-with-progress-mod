@@ -2,7 +2,7 @@
 /******** if downloading file does not exist so create one ***************/
 $file00 = "downloadings.txt";
 if(!is_file($file00)){
-    file_put_contents($file00, '');
+    file_put_contents($file00, '<li> </li>');
 }
 /**************** ************/
  /************ delete coding start *******/
